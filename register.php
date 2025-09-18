@@ -5,10 +5,10 @@ require_once 'includes/database.php';
 require_once 'includes/auth.php';
 
 // Rediriger si l'utilisateur est déjà connecté
-if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit();
-}
+#if (isset($_SESSION['user_id'])) {
+#    header('Location: index.php');
+#    exit();
+#}
 
 $error = '';
 $success = '';
@@ -526,16 +526,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="navbar">
-                <a href="index.php" class="logo">
-                    <i class="fas fa-home"></i>
-                    ImmoLink
-                </a>
-            </div>
-        </div>
-    </header>
 
     <main class="main-content">
         <div class="container">
@@ -707,51 +697,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>ImmoLink</h3>
-                    <p>La plateforme immobilière moderne pour acheter, vendre et louer des biens en toute simplicité.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="index.php">Accueil</a></li>
-                        <li><a href="properties.php?type=vente">Acheter</a></li>
-                        <li><a href="properties.php?type=location">Louer</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Légal</h3>
-                    <ul>
-                        <li><a href="terms.php">Conditions d'utilisation</a></li>
-                        <li><a href="privacy.php">Politique de confidentialité</a></li>
-                        <li><a href="legal.php">Mentions légales</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> contact@immolink.cm</li>
-                        <li><i class="fas fa-phone"></i> +237 6 99 71 46 82</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroun</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 ImmoLink - Tous droits réservés
-            </div>
-        </div>
-    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
