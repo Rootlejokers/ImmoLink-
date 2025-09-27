@@ -6,10 +6,10 @@ require_once '../../includes/auth.php';
 require_once '../../includes/functions.php';
 
 // Vérifier si l'utilisateur est connecté et est un propriétaire
-#if (!isLoggedIn() || !isOwner()) {
-#    header('Location: ../../login.php');
-#    exit();
-#}
+if (!isLoggedIn() || !isOwner()) {
+    header('Location: ../../login.php');
+    exit();
+}
 
 $user_id = $_SESSION['user_id'];
 $db = new Database();

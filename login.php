@@ -5,10 +5,10 @@ require_once 'includes/database.php';
 require_once 'includes/auth.php';
 
 // Rediriger si l'utilisateur est déjà connecté
-# if (isset($_SESSION['user_id'])) {
-#    header('Location: index.php');
-#    exit();
-#}
+// if (isset($_SESSION['user_id'])) {
+//     header('Location: index.php');
+//    exit();
+// }
 
 $error = '';
 $email = '';
