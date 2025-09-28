@@ -45,7 +45,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
 
         .navbar {
@@ -73,7 +73,7 @@
             gap: 25px;
         }
 
-        .nav-links a {
+        .nav-links a:not(.btn) {
             text-decoration: none;
             color: var(--secondary);
             font-weight: 500;
@@ -81,22 +81,23 @@
             position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-links a:not(.btn):hover {
             color: var(--primary);
         }
 
-        .nav-links a::after {
+        /* Soulignement uniquement pour les liens simples */
+        .nav-links a:not(.btn)::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
             width: 0;
             height: 2px;
             background-color: var(--primary);
+            left: 0;
+            bottom: -5px;
             transition: width 0.3s;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:not(.btn):hover::after {
             width: 100%;
         }
 
@@ -141,36 +142,48 @@
 
         /* Hero Section */
         .hero {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            text-align: center;
             position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: url('assets/images/logos/sous-location-1-c1f1b9-0@1x.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             overflow: hidden;
         }
 
+        /* Overlay sombre avec flou */
         .hero::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-            background-size: 100% 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+
+        /* Contenu au-dessus de l'overlay */
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 48px;
             margin-bottom: 20px;
-            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
+            font-size: 18px;
         }
 
         /* Advanced Search */
@@ -190,6 +203,7 @@
 
         .search-tab {
             flex: 1;
+            color: gray;
             padding: 15px;
             text-align: center;
             cursor: pointer;
@@ -409,34 +423,173 @@
             color: var(--dark);
         }
 
-        /* Stats Section */
+        /* Stats Section Modernisée */
         .stats-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
         .stat-item {
-            padding: 30px;
+            padding: 20px;
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .stat-label {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
+        }
+
+        /* Section Témoignages */
+        .testimonials-section {
+            background-color: var(--light);
+            padding: 80px 0;
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+            margin-bottom: 25px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-content::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-content::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .author-info p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+
+        .carousel-arrow.next {
+            right: 20px;
         }
 
         /* Footer */
@@ -553,6 +706,12 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -592,6 +751,27 @@
             .auth-buttons {
                 flex-direction: column;
                 width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-item {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .carousel-arrow {
+                display: none;
+            }
+
+            .testimonial-slide {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -722,24 +902,87 @@
         </div>
     </section>
 
+    <!-- Section Témoignages -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Ce que disent nos clients</h2>
+            <div class="testimonials-carousel">
+                <button class="carousel-arrow prev" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-arrow next" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            Grâce à ImmoLink, j'ai trouvé l'appartement de mes rêves en moins d'une semaine. L'interface est intuitive et les propriétaires sont très réactifs. Je recommande vivement !
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sarah M." class="author-avatar">
+                            <div class="author-info">
+                                <h4>Sarah M.</h4>
+                                <p>Locataire à Douala</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            En tant que propriétaire, ImmoLink m'a permis de louer ma villa rapidement. La plateforme est sécurisée et les outils de gestion sont très pratiques. Excellent service !
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Jean K." class="author-avatar">
+                            <div class="author-info">
+                                <h4>Jean K.</h4>
+                                <p>Propriétaire à Yaoundé</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            Transaction rapide et sécurisée pour l'achat de ma première maison. L'équipe d'ImmoLink m'a accompagné à chaque étape. Une expérience exceptionnelle !
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Marie T." class="author-avatar">
+                            <div class="author-info">
+                                <h4>Marie T.</h4>
+                                <p>Nouvelle propriétaire</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+                    <button class="carousel-dot" onclick="goToSlide(1)"></button>
+                    <button class="carousel-dot" onclick="goToSlide(2)"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section Modernisée -->
     <section class="stats-section">
         <div class="container">
-            <h2 class="section-title" style="color: white;">ImmoLink en chiffres</h2>
+            <h2 class="section-title" style="color: white; margin-bottom: 30px;">ImmoLink en chiffres</h2>
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number" id="statProperties">0</div>
+                    <span class="stat-number" id="statProperties">0</span>
                     <div class="stat-label">Biens disponibles</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="statUsers">0</div>
+                    <span class="stat-number" id="statUsers">0</span>
                     <div class="stat-label">Utilisateurs satisfaits</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="statTransactions">0</div>
+                    <span class="stat-number" id="statTransactions">0</span>
                     <div class="stat-label">Transactions</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="statCities">0</div>
+                    <span class="stat-number" id="statCities">0</span>
                     <div class="stat-label">Villes couvertes</div>
                 </div>
             </div>
@@ -837,14 +1080,56 @@
             
             // Animate statistics
             animateStatistics();
+
+            // Initialize carousel
+            initCarousel();
         });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const track = document.getElementById('testimonialsTrack');
+
+        function initCarousel() {
+            updateCarousel();
+            
+            // Auto-advance slides every 5 seconds
+            setInterval(() => {
+                nextSlide();
+            }, 5000);
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
 
         function loadFeaturedProperties() {
             // Simulated data - in real app, this would come from an API
             const properties = [
                 {
                     id: 1,
-                    title: "Appartement spacieux à Yaoundé",
+                    title: "Appartement spacieux à vendre",
                     price: "25 000 000 Fcfa",
                     address: "Tropicana, Yaoundé",
                     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
@@ -868,7 +1153,7 @@
                     id: 3,
                     title: "Duplex avec vue sur mer",
                     price: "42 500 000 Fcfa",
-                    address: "Ngousso, Kribi",
+                    address: "Ngousso, Yaoundé",
                     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80",
                     bedrooms: 3,
                     bathrooms: 2,
